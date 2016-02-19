@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash
 # Get WAITHANDLE, kinda awkward as it needs to be defined before error_exit
 export WAITHANDLE=$1
 # Helper function.
@@ -22,7 +22,6 @@ apt-get -y install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
 apt-get -y install python-pip || error_exit 'Failed apt-get install python-pip'
 apt-get -y install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
 pip install -U awscli || error_exit 'Failed pip install awscli.'
-cd /home/ubuntu/
 # Install the AWS CloudFormation Agent.
 mkdir aws-cfn-bootstrap-latest
 curl https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz | tar xz -C aws-cfn-bootstrap-latest --strip-components 1 || error_exit 'Failed to download AWS CloudFormation Agent.'
@@ -37,3 +36,4 @@ chmod +x ./install
 /opt/aws/bin/cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed to run cfn-init.'
 # All is well, so signal success to the stack.
 /opt/aws/bin/cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
+cd ..
