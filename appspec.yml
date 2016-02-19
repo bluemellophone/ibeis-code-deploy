@@ -8,6 +8,7 @@ hooks:
     - location: scripts/step2_install_dependencies
       timeout: 1800
       runas: ubuntu
+  Install:
     - location: scripts/step3_clone_repositories
       timeout: 120
       runas: ubuntu
@@ -17,9 +18,11 @@ hooks:
     - location: scripts/step5_develop_repositories
       timeout: 120
       runas: ubuntu
+  AfterInstall:
     - location: scripts/step6_run_tests
       timeout: 600
       runas: ubuntu
+  ApplicationStart:
     - location: scripts/step7_start_tmux_web_server
       timeout: 120
       runas: ubuntu
