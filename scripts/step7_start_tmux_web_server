@@ -1,0 +1,5 @@
+#!/bin/bash
+tmux new-session -d -s ibeis-ia-codedeploy-web-server
+tmux send-keys 'cd ~/code/ibeis
+./main.py --dbdir /data/ibeis/testdb1/ --web --port 5000
+'

@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /opt/ibeis/ibeis
+./super_setup.py --checkout next
+./super_setup.py --build
+cd ../
+# Ensure flukematch built
+cd ibeis-flukematch-module
+./unix_build.sh
+cd ../
+cd ibeis

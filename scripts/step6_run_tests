@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /
+sudo mkdir data
+cd data
+sudo mkdir ibeis
+sudo chown ubuntu ibeis
+cd /opt/ibeis/ibeis
+./dev.py --set-workdir /data/ibeis/
+./reset_dbs.py --reset-all
+./run_tests.py
