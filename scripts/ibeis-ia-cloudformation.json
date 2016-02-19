@@ -25,7 +25,15 @@
       "Description": "Amazon EC2 instance type.",
       "Type": "String",
       "Default": "t1.micro",
-      "ConstraintDescription": "Must be a valid Amazon EC2 instance type."
+      "ConstraintDescription": "Must be a valid Amazon EC2 instance type.",
+      "AllowedValues": [
+        "t1.micro",
+        "m3.medium",
+        "m3.large",
+        "m3.xlarge",
+        "c3.large",
+        "c3.xlarge"
+      ]
     },
     "InstanceCount": {
       "Description": "Number of Amazon EC2 instances.",

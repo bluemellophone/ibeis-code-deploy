@@ -1,12 +1,9 @@
 #!/bin/bash
 cd /opt/
 sudo mkdir ibeis
-sudo chown ec2-user ibeis
+sudo chown ubuntu ibeis
 cd ibeis
-sudo yum install git -y
+sudo apt-get -y install git
 git clone https://github.com/Erotemic/ibeis.git
 cd ibeis
-./super_setup.py --pull
-
-
-
+./super_setup.py --bootstrap
