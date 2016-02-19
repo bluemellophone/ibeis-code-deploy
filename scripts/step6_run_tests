@@ -8,3 +8,4 @@ cd /opt/ibeis/ibeis
 ./dev.py --set-workdir /data/ibeis/
 ./reset_dbs.py --reset-all
 ./run_tests.py
+

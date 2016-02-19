@@ -7,3 +7,4 @@ sudo apt-get -y install git
 git clone https://github.com/Erotemic/ibeis.git
 cd ibeis
 ./super_setup.py --bootstrap
+

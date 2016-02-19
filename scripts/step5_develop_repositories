@@ -1,3 +1,4 @@
 #!/bin/bash
 cd /opt/ibeis/ibeis
 ./super_setup.py --develop
+
