@@ -1,3 +1,12 @@
 #!/bin/bash
-yum install -y httpd
+cd /opt/
+sudo mkdir ibeis
+sudo chown ec2-user ibeis
+cd ibeis
+sudo yum install git -y
+git clone https://github.com/Erotemic/ibeis.git
+cd ibeis
+./super_setup.py --pull
+
+
 

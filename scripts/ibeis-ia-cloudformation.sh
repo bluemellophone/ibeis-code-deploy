@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -ex
 # Get WAITHANDLE, kinda awkward as it needs to be defined before error_exit
 export WAITHANDLE=$1
 # Helper function.
 function error_exit
 {
-  /opt/aws/bin/cfn-signal -e 1 -r $1 $WAITHANDLE
+  cfn-signal -e 1 -r $1 $WAITHANDLE
   exit 1
 }
 # Check parameters
@@ -29,11 +29,11 @@ easy_install aws-cfn-bootstrap-latest || error_exit 'Failed to install AWS Cloud
 # Install the AWS CodeDeploy Agent.
 mkdir aws-cd-install-latest
 cd aws-cd-install-latest
-aws s3 cp --region $REGION s3://aws-codedeploy-us-west-2/latest/install . || error_exit 'Failed to download AWS CodeDeploy Agent.'
+aws s3 cp --region $REGION s3://aws-codedeploy-$REGION/latest/install . || error_exit 'Failed to download AWS CodeDeploy Agent.'
 chmod +x ./install
 ./install auto || error_exit 'Failed to install AWS CodeDeploy Agent.'
 # Start the stack initialization
-/opt/aws/bin/cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed to run cfn-init.'
+cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed to run cfn-init.'
 # All is well, so signal success to the stack.
-/opt/aws/bin/cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
+cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
 cd ..
