@@ -6,7 +6,7 @@ hooks:
       timeout: 120
       runas: ubuntu
     - location: scripts/step2_install_dependencies
-      timeout: 1800
+      timeout: 5400
       runas: ubuntu
   Install:
     - location: scripts/step3_clone_repositories

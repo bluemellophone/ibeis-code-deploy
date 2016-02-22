@@ -4,6 +4,8 @@ sudo mkdir ibeis
 sudo chown ubuntu ibeis
 cd ibeis
 sudo apt-get -y install git
+sudo apt-get -y install tmux
+sudo apt-get -y install htop
 git clone https://github.com/Erotemic/ibeis.git
 cd ibeis
 git checkout next
