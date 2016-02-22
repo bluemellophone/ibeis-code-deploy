@@ -1,3 +1,6 @@
 #!/bin/bash
-tmux kill-session -t ibeis-ia-codedeploy-web-server
+TMUX_SESSION=$(tmux ls | grep ibeis-ia-codedeploy-web-server | wc -l)
+if [[ "$TMUX_SESSIONS" == "1"  ]]; then
+    tmux kill-session -t ibeis-ia-codedeploy-web-server
+fi
 
