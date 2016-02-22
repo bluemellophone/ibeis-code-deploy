@@ -1,6 +1,9 @@
 #!/bin/bash
-export TMUX_SESSIONS=$(tmux ls 2> /dev/null | grep ibeis-ia-codedeploy-web-server | wc -l)
-if [[ "$TMUX_SESSIONS" == "1"  ]]; then
+export TMUX_SESSIONS=$(tmux ls 2> /dev/null | grep ibeis-ia-codedeploy-web-server)
+if [[ "$TMUX_SESSIONS" == ""  ]]; then
+    echo 'SKIPPED'
+else
+    echo 'KILLED'
     tmux kill-session -t ibeis-ia-codedeploy-web-server
 fi
 
