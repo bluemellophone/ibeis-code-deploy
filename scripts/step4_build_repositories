@@ -1,6 +1,7 @@
 #!/bin/bash
 cd /opt/ibeis/ibeis
 ./super_setup.py --checkout next
+./super_setup.py --pull
 ./super_setup.py --build
 cd ../
 # Ensure flukematch built

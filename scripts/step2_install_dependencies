@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /opt/ibeis/ibeis
+git pull
 ./_scripts/__install_prereqs__.sh
 sudo apt-get -y install libopencv-dev python-opencv
 # Fix problem with GraphViz
