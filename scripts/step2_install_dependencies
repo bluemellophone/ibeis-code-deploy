@@ -2,6 +2,9 @@
 cd /opt/ibeis/ibeis
 git pull
 # Because Scipy is a little bitch and needs a lot of memory for compiling...
+# Ensure no swap already (due to potential error)
+sudo swapoff /var/swap.1
+sudo rm /var/swap.1
 # Enable 1GB of swap
 sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 sudo /sbin/mkswap /var/swap.1

@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get install tmux
 tmux new-session -d -s ibeis-ia-codedeploy-web-server
 tmux send-keys 'cd ~/code/ibeis
 ./super_setup.py --pull
