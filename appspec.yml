@@ -8,7 +8,7 @@ hooks:
     - location: scripts/step2_install_dependencies
       timeout: 7200
       runas: ubuntu
-  Install:
+  AfterInstall:
     - location: scripts/step3_clone_repositories
       timeout: 120
       runas: ubuntu
@@ -18,7 +18,6 @@ hooks:
     - location: scripts/step5_develop_repositories
       timeout: 120
       runas: ubuntu
-  AfterInstall:
     - location: scripts/step6_run_tests
       timeout: 600
       runas: ubuntu

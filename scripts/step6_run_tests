@@ -6,6 +6,8 @@ sudo mkdir ibeis
 sudo chown ubuntu ibeis
 cd /opt/ibeis/ibeis
 ./super_setup.py --pull
+sudo rm -rf ~/.theano
+sudo ln /dev/null /dev/raw1394
 ./dev.py --set-workdir /data/ibeis/
 ./reset_dbs.py --reset-all
 ./run_tests.py
