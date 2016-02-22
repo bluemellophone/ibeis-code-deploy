@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /opt/ibeis/ibeis
-./super_setup.py --pull
-./super_setup.py --pull
+./super_setup.py --pull --check-utool-error-code-0
 ./super_setup.py --pull
 
