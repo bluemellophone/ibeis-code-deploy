@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 echo 'CHECKING'
-tmux has-session -t ibeis-ia-codedeploy-web-server 2> /dev/null
-if [ "$?" -eq 1 ] ; then
+tmux new -d -s __PLACEHOLDER_TMUX_SESSION_FOR_NONEMPTY_LIST_SESSIONS__
+export TMUX_SESSIONS=$(tmux ls | grep ibeis-ia-codedeploy-web-server | wc -l)
+if [[] "$TMUX_SESSIONS" == "0" ]] ; then
     echo '    SKIPPED'
+    tmux kill-session -t __PLACEHOLDER_TMUX_SESSION_FOR_NONEMPTY_LIST_SESSIONS__
 else
     echo '    KILLED'
+    tmux kill-session -t __PLACEHOLDER_TMUX_SESSION_FOR_NONEMPTY_LIST_SESSIONS__
     tmux kill-session -t ibeis-ia-codedeploy-web-server
 fi
 
