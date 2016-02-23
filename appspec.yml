@@ -19,7 +19,7 @@ hooks:
       timeout: 120
       runas: ubuntu
     - location: scripts/step6_run_tests
-      timeout: 600
+      timeout: 1800
       runas: ubuntu
   ApplicationStart:
     - location: scripts/step7_start_tmux_web_server
