@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 cd /opt/ibeis/ibeis
 ./super_setup.py --checkout next
 ./super_setup.py --pull

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 echo 'CHECKING'
 tmux new -d -s __PLACEHOLDER_TMUX_SESSION_FOR_NONEMPTY_LIST_SESSIONS__
 export TMUX_SESSIONS=$(tmux ls | grep ibeis-ia-codedeploy-web-server | wc -l)

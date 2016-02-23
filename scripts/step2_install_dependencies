@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 cd /opt/ibeis/ibeis
 git pull
 # Because Scipy is a little bitch and needs a lot of memory for compiling...
