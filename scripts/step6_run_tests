@@ -1,9 +1,13 @@
 #!/bin/bash -ex
 cd /
-sudo mkdir data
+if [ ! -f data ]; then
+    sudo mkdir data
+fi
 cd data
-sudo mkdir ibeis
-sudo chown ubuntu ibeis
+if [ ! -f ibeis ]; then
+    sudo mkdir ibeis
+    sudo chown ubuntu ibeis
+fi
 cd /opt/ibeis/ibeis
 ./super_setup.py --pull
 sudo rm -rf ~/.theano

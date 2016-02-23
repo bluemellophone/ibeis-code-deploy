@@ -1,12 +1,16 @@
 #!/bin/bash -ex
 cd /opt/
-sudo mkdir ibeis
-sudo chown ubuntu ibeis
+if [ ! -f ibeis ]; then
+    sudo mkdir ibeis
+    sudo chown ubuntu ibeis
+fi
 cd ibeis
 sudo apt-get -y install git
 sudo apt-get -y install tmux
 sudo apt-get -y install htop
-git clone https://github.com/Erotemic/ibeis.git
+if [ ! -f ibeis ]; then
+    git clone https://github.com/Erotemic/ibeis.git
+fi
 cd ibeis
 git checkout next
 git pull

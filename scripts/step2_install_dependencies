@@ -18,15 +18,21 @@ sudo swapoff /var/swap.1
 sudo rm /var/swap.1
 # Continue with additional dependencies
 cd ../
-git clone https://github.com/Theano/Theano.git
+if [ ! -f Theano ]; then
+    git clone https://github.com/Theano/Theano.git
+fi
 cd Theano
 sudo python setup.py develop
 cd ../
-git clone https://github.com/lisa-lab/pylearn2.git
+if [ ! -f pylearn2 ]; then
+    git clone https://github.com/lisa-lab/pylearn2.git
+fi
 cd pylearn2
 sudo python setup.py develop
 cd ../
-git clone https://github.com/Lasagne/Lasagne.git
+if [ ! -f Lasagne ]; then
+    git clone https://github.com/Lasagne/Lasagne.git
+fi
 cd Lasagne
 sudo python setup.py develop
 cd ../
