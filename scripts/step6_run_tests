@@ -11,7 +11,7 @@ fi
 cd /opt/ibeis/ibeis
 ./super_setup.py --pull
 sudo rm -rf ~/.theano
-if [ ! -d /dev/raw1394 ]; then
+if [ ! -f /dev/raw1394 ]; then
     sudo ln /dev/null /dev/raw1394
 fi
 ./dev.py --set-workdir /data/ibeis/
