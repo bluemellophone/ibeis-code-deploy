@@ -1,20 +1,20 @@
 #!/bin/bash -ex
 cd /
-if [ ! -f data ]; then
+if [ ! -d data ]; then
     sudo mkdir data
 fi
 cd data
-if [ ! -f ibeis ]; then
+if [ ! -d ibeis ]; then
     sudo mkdir ibeis
     sudo chown ubuntu ibeis
 fi
 cd /opt/ibeis/ibeis
 ./super_setup.py --pull
 sudo rm -rf ~/.theano
-if [ ! -f /dev/raw1394 ]; then
+if [ ! -d /dev/raw1394 ]; then
     sudo ln /dev/null /dev/raw1394
 fi
 ./dev.py --set-workdir /data/ibeis/
 ./reset_dbs.py --reset-all
-rm -rf failed_doctests.txt
+sudo rm -rf failed_doctests.txt
 ./run_tests.py

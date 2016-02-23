@@ -3,7 +3,7 @@ echo 'CHECKING'
 # Because tmux is dumb and exit(1) all over the place, we need to make a placeholder tmux instance
 tmux new -d -s __PLACEHOLDER_TMUX_SESSION_FOR_NONEMPTY_LIST_SESSIONS__
 export TMUX_SESSIONS=$(tmux ls | grep ibeis-ia-codedeploy-web-server | wc -l)
-if [[] "$TMUX_SESSIONS" == "0" ]] ; then
+if [[ "$TMUX_SESSIONS" == "0" ]] ; then
     echo '    SKIPPED'
 else
     echo '    KILLED'

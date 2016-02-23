@@ -2,10 +2,13 @@
 cd /opt/ibeis/ibeis
 git pull
 # Because Scipy is a little bitch and needs a lot of memory for compiling...
-# Enable 1GB of swap
-sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
-sudo /sbin/mkswap /var/swap.1
-sudo /sbin/swapon /var/swap.1
+# Enable 1GB of swap, if not available
+if [ ! -f /var/swap.1 ]; then
+    export __MADE_SWAP__="1"
+    sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+    sudo /sbin/mkswap /var/swap.1
+    sudo /sbin/swapon /var/swap.1
+fi
 # Install major prerequisites
 ./_scripts/__install_prereqs__.sh
 sudo apt-get -y install libopencv-dev python-opencv
@@ -13,24 +16,26 @@ sudo apt-get -y install libopencv-dev python-opencv
 sudo pip uninstall pygraphviz
 sudo pip install pygraphviz --install-option="--include-path=/usr/include/graphviz" --install-option="--library-path=/usr/lib/graphviz/"
 # We are now done compiling the major dependencies...
-# Disable swap
-sudo swapoff /var/swap.1
-sudo rm /var/swap.1
+# Disable swap, if we made it
+if [[ "$__MADE_SWAP__" == "1" ]] ; then
+    sudo swapoff /var/swap.1
+    sudo rm /var/swap.1
+fi
 # Continue with additional dependencies
 cd ../
-if [ ! -f Theano ]; then
+if [ ! -d Theano ]; then
     git clone https://github.com/Theano/Theano.git
 fi
 cd Theano
 sudo python setup.py develop
 cd ../
-if [ ! -f pylearn2 ]; then
+if [ ! -d pylearn2 ]; then
     git clone https://github.com/lisa-lab/pylearn2.git
 fi
 cd pylearn2
 sudo python setup.py develop
 cd ../
-if [ ! -f Lasagne ]; then
+if [ ! -d Lasagne ]; then
     git clone https://github.com/Lasagne/Lasagne.git
 fi
 cd Lasagne
