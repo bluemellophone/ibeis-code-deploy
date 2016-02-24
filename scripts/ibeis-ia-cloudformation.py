@@ -79,8 +79,13 @@ template_structure = '''
         "SecurityGroup": {{
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {{
-                "GroupDescription": "Enable HTTP access via port 5000 and SSH access.",
+                "GroupDescription": "Enable HTTP access via ports 80, 5000 and SSH access.",
                 "SecurityGroupIngress": [{{
+                    "IpProtocol": "tcp",
+                    "FromPort": "80",
+                    "ToPort": "80",
+                    "CidrIp": "0.0.0.0/0"
+                }}, {{
                     "IpProtocol": "tcp",
                     "FromPort": "22",
                     "ToPort": "22",
