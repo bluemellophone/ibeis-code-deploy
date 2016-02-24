@@ -1,473 +1,2452 @@
 {
-  "Description": "Create instances ready for IBEIS IA CodeDeploy.",
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Parameters": {
-    "TagKey": {
-      "Description": "The tag key that identifies this as a target for deployments.",
-      "Type": "String",
-      "Default": "Name",
-      "AllowedPattern": "[\\x20-\\x7E]*",
-      "ConstraintDescription": "Can contain only ASCII characters."
-    },
-    "TagValue": {
-      "Description": "The tag value that identifies this as a target for deployments.",
-      "Type": "String",
-      "Default": "IBEIS-IA-CodeDeploy",
-      "AllowedPattern": "[\\x20-\\x7E]*",
-      "ConstraintDescription": "Can contain only ASCII characters."
-    },
-    "KeyPairName": {
-      "Description": "Name of an existing Amazon EC2 key pair to enable SSH or RDP access to the instances.",
-      "Type": "AWS::EC2::KeyPair::KeyName",
-      "Default": "shared-ibeis-team-key"
-    },
-    "InstanceType": {
-      "Description": "Amazon EC2 instance type.",
-      "Type": "String",
-      "Default": "c3.large",
-      "ConstraintDescription": "Must be a valid Amazon EC2 instance type.",
-      "AllowedValues": [
-        "t1.micro",
-        "m3.medium",
-        "m3.large",
-        "m3.xlarge",
-        "c3.large",
-        "c3.xlarge"
+  "Conditions": {
+    "LaunchEC2Instance1": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "1",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "2",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "3",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "4",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "5",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "6",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "7",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "8",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "9",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "10",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "11",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "12",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "13",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "14",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Or": [
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "15",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "Fn::Or": [
+                                                                    {
+                                                                      "Fn::Equals": [
+                                                                        "16",
+                                                                        {
+                                                                          "Ref": "InstanceCount"
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "Fn::Or": [
+                                                                        {
+                                                                          "Fn::Equals": [
+                                                                            "17",
+                                                                            {
+                                                                              "Ref": "InstanceCount"
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "Fn::Or": [
+                                                                            {
+                                                                              "Fn::Equals": [
+                                                                                "18",
+                                                                                {
+                                                                                  "Ref": "InstanceCount"
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "Fn::Or": [
+                                                                                {
+                                                                                  "Fn::Equals": [
+                                                                                    "19",
+                                                                                    {
+                                                                                      "Ref": "InstanceCount"
+                                                                                    }
+                                                                                  ]
+                                                                                },
+                                                                                {
+                                                                                  "Fn::Equals": [
+                                                                                    "20",
+                                                                                    {
+                                                                                      "Ref": "InstanceCount"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
-    "InstanceCount": {
-      "Description": "Number of Amazon EC2 instances.",
-      "Type": "Number",
-      "Default": "3",
-      "ConstraintDescription": "Must be a number between 1 and 3.",
-      "MinValue": "1",
-      "MaxValue": "3"
-    },
-    "OperatingSystem": {
-      "Description": "Amazon EC2 operating system type.",
-      "Type": "String",
-      "Default": "Linux",
-      "ConstraintDescription": "Must be Linux.",
-      "AllowedValues": [
-        "Linux"
+    "LaunchEC2Instance10": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "10",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "11",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "12",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "13",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "14",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "15",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "16",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "17",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "18",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "19",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Equals": [
+                                                "20",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
-    "SSHLocation": {
-      "Description": "The IP address range that can be used to connect using SSH or RDP to the Amazon EC2 instances.",
-      "Type": "String",
-      "MinLength": "9",
-      "MaxLength": "18",
-      "Default": "0.0.0.0/0",
-      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-      "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
+    "LaunchEC2Instance11": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "11",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "12",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "13",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "14",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "15",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "16",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "17",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "18",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "19",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Equals": [
+                                            "20",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance12": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "12",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "13",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "14",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "15",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "16",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "17",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "18",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "19",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Equals": [
+                                        "20",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance13": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "13",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "14",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "15",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "16",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "17",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "18",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "19",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Equals": [
+                                    "20",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance14": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "14",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "15",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "16",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "17",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "18",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "19",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Equals": [
+                                "20",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance15": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "15",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "16",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "17",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "18",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "19",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Equals": [
+                            "20",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance16": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "16",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "17",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "18",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "19",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Equals": [
+                        "20",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance17": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "17",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "18",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "19",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Equals": [
+                    "20",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance18": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "18",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "19",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Equals": [
+                "20",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance19": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "19",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Equals": [
+            "20",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance2": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "2",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "3",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "4",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "5",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "6",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "7",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "8",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "9",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "10",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "11",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "12",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "13",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "14",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "15",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Or": [
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "16",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "Fn::Or": [
+                                                                    {
+                                                                      "Fn::Equals": [
+                                                                        "17",
+                                                                        {
+                                                                          "Ref": "InstanceCount"
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "Fn::Or": [
+                                                                        {
+                                                                          "Fn::Equals": [
+                                                                            "18",
+                                                                            {
+                                                                              "Ref": "InstanceCount"
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "Fn::Or": [
+                                                                            {
+                                                                              "Fn::Equals": [
+                                                                                "19",
+                                                                                {
+                                                                                  "Ref": "InstanceCount"
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "Fn::Equals": [
+                                                                                "20",
+                                                                                {
+                                                                                  "Ref": "InstanceCount"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance20": {
+      "Fn::Equals": [
+        "20",
+        {
+          "Ref": "InstanceCount"
+        }
+      ]
+    },
+    "LaunchEC2Instance3": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "3",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "4",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "5",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "6",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "7",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "8",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "9",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "10",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "11",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "12",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "13",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "14",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "15",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "16",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Or": [
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "17",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "Fn::Or": [
+                                                                    {
+                                                                      "Fn::Equals": [
+                                                                        "18",
+                                                                        {
+                                                                          "Ref": "InstanceCount"
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "Fn::Or": [
+                                                                        {
+                                                                          "Fn::Equals": [
+                                                                            "19",
+                                                                            {
+                                                                              "Ref": "InstanceCount"
+                                                                            }
+                                                                          ]
+                                                                        },
+                                                                        {
+                                                                          "Fn::Equals": [
+                                                                            "20",
+                                                                            {
+                                                                              "Ref": "InstanceCount"
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance4": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "4",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "5",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "6",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "7",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "8",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "9",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "10",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "11",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "12",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "13",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "14",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "15",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "16",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "17",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Or": [
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "18",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "Fn::Or": [
+                                                                    {
+                                                                      "Fn::Equals": [
+                                                                        "19",
+                                                                        {
+                                                                          "Ref": "InstanceCount"
+                                                                        }
+                                                                      ]
+                                                                    },
+                                                                    {
+                                                                      "Fn::Equals": [
+                                                                        "20",
+                                                                        {
+                                                                          "Ref": "InstanceCount"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance5": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "5",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "6",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "7",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "8",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "9",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "10",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "11",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "12",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "13",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "14",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "15",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "16",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "17",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "18",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Or": [
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "19",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "Fn::Equals": [
+                                                                    "20",
+                                                                    {
+                                                                      "Ref": "InstanceCount"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance6": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "6",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "7",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "8",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "9",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "10",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "11",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "12",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "13",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "14",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "15",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "16",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "17",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "18",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Or": [
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "19",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "Fn::Equals": [
+                                                                "20",
+                                                                {
+                                                                  "Ref": "InstanceCount"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance7": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "7",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "8",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "9",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "10",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "11",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "12",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "13",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "14",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "15",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "16",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "17",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "18",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Or": [
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "19",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "Fn::Equals": [
+                                                            "20",
+                                                            {
+                                                              "Ref": "InstanceCount"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance8": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "8",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "9",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "10",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "11",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "12",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "13",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "14",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "15",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "16",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "17",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "18",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Or": [
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "19",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Fn::Equals": [
+                                                        "20",
+                                                        {
+                                                          "Ref": "InstanceCount"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "LaunchEC2Instance9": {
+      "Fn::Or": [
+        {
+          "Fn::Equals": [
+            "9",
+            {
+              "Ref": "InstanceCount"
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                "10",
+                {
+                  "Ref": "InstanceCount"
+                }
+              ]
+            },
+            {
+              "Fn::Or": [
+                {
+                  "Fn::Equals": [
+                    "11",
+                    {
+                      "Ref": "InstanceCount"
+                    }
+                  ]
+                },
+                {
+                  "Fn::Or": [
+                    {
+                      "Fn::Equals": [
+                        "12",
+                        {
+                          "Ref": "InstanceCount"
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Or": [
+                        {
+                          "Fn::Equals": [
+                            "13",
+                            {
+                              "Ref": "InstanceCount"
+                            }
+                          ]
+                        },
+                        {
+                          "Fn::Or": [
+                            {
+                              "Fn::Equals": [
+                                "14",
+                                {
+                                  "Ref": "InstanceCount"
+                                }
+                              ]
+                            },
+                            {
+                              "Fn::Or": [
+                                {
+                                  "Fn::Equals": [
+                                    "15",
+                                    {
+                                      "Ref": "InstanceCount"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Fn::Or": [
+                                    {
+                                      "Fn::Equals": [
+                                        "16",
+                                        {
+                                          "Ref": "InstanceCount"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Or": [
+                                        {
+                                          "Fn::Equals": [
+                                            "17",
+                                            {
+                                              "Ref": "InstanceCount"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Or": [
+                                            {
+                                              "Fn::Equals": [
+                                                "18",
+                                                {
+                                                  "Ref": "InstanceCount"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Or": [
+                                                {
+                                                  "Fn::Equals": [
+                                                    "19",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "Fn::Equals": [
+                                                    "20",
+                                                    {
+                                                      "Ref": "InstanceCount"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
+  "Description": "Create instances ready for IBEIS IA CodeDeploy.",
   "Mappings": {
     "RegionOS2AMI": {
       "us-west-2": {
         "Linux": "ami-9dbea4fc"
-      }
-    },
-    "OS2SSHPort": {
-      "Linux": {
-        "SSHPort": "22"
-      }
-    }
-  },
-  "Conditions": {
-    "LaunchInstance2": {
-      "Fn::Or": [{
-        "Fn::Equals": [
-          "2", {
-            "Ref": "InstanceCount"
-          }
-        ]
-      }, {
-        "Fn::Equals": [
-          "3", {
-            "Ref": "InstanceCount"
-          }
-        ]
-      }]
-    },
-    "LaunchInstance3": {
-      "Fn::Equals": [
-        "3", {
-          "Ref": "InstanceCount"
-        }
-      ]
-    },
-    "LaunchLinuxEC2Instance1": {
-      "Fn::Equals": [{
-          "Ref": "OperatingSystem"
-        },
-        "Linux"
-      ]
-    },
-    "LaunchLinuxEC2Instance2": {
-      "Fn::And": [{
-        "Condition": "LaunchLinuxEC2Instance1"
-      }, {
-        "Condition": "LaunchInstance2"
-      }]
-    },
-    "LaunchLinuxEC2Instance3": {
-      "Fn::And": [{
-        "Condition": "LaunchLinuxEC2Instance1"
-      }, {
-        "Condition": "LaunchInstance3"
-      }]
-    }
-  },
-  "Resources": {
-    "LinuxEC2Instance": {
-      "Type": "AWS::EC2::Instance",
-      "Condition": "LaunchLinuxEC2Instance1",
-      "Metadata": {
-        "AWS::CloudFormation::Init": {
-          "services": {
-            "sysvint": {
-              "codedeploy-agent": {
-                "enabled": "true",
-                "ensureRunning": "true"
-              }
-            }
-          }
-        }
-      },
-      "Properties": {
-        "ImageId": {
-          "Fn::FindInMap": [
-            "RegionOS2AMI", {
-              "Ref": "AWS::Region"
-            }, {
-              "Ref": "OperatingSystem"
-            }
-          ]
-        },
-        "InstanceType": {
-          "Ref": "InstanceType"
-        },
-        "SecurityGroups": [{
-          "Ref": "SecurityGroup"
-        }],
-        "UserData": {
-          "Fn::Base64": {
-            "Fn::Join": [
-              "", [
-                "#!/bin/bash\n",
-                "cd /home/ubuntu/\n",
-                "echo \"'", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "'\" > init.config\n",
-                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "chmod +x ./ibeis-ia-cloudformation.sh\n",
-                "sudo ./ibeis-ia-cloudformation.sh '", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "' > init.log\n"
-              ]
-            ]
-          }
-        },
-        "KeyName": {
-          "Ref": "KeyPairName"
-        },
-        "Tags": [{
-          "Key": {
-            "Ref": "TagKey"
-          },
-          "Value": {
-            "Ref": "TagValue"
-          }
-        }],
-        "IamInstanceProfile": {
-          "Ref": "InstanceRoleInstanceProfile"
-        }
-      }
-    },
-    "WaitHandle": {
-      "Type": "AWS::CloudFormation::WaitConditionHandle"
-    },
-    "WaitCondition": {
-      "Type": "AWS::CloudFormation::WaitCondition",
-      "Properties": {
-        "Count": {
-          "Ref": "InstanceCount"
-        },
-        "Handle": {
-          "Ref": "WaitHandle"
-        },
-        "Timeout": "900"
-      }
-    },
-    "SecurityGroup": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Enable HTTP access via ports 80, 5000 and SSH access.",
-        "SecurityGroupIngress": [{
-          "IpProtocol": "tcp",
-          "FromPort": "80",
-          "ToPort": "80",
-          "CidrIp": "0.0.0.0/0"
-        }, {
-          "IpProtocol": "tcp",
-          "FromPort": "5000",
-          "ToPort": "5000",
-          "CidrIp": "0.0.0.0/0"
-        }, {
-          "IpProtocol": "tcp",
-          "FromPort": {
-            "Fn::FindInMap": [
-              "OS2SSHPort", {
-                "Ref": "OperatingSystem"
-              },
-              "SSHPort"
-            ]
-          },
-          "ToPort": {
-            "Fn::FindInMap": [
-              "OS2SSHPort", {
-                "Ref": "OperatingSystem"
-              },
-              "SSHPort"
-            ]
-          },
-          "CidrIp": {
-            "Ref": "SSHLocation"
-          }
-        }]
-      }
-    },
-    "CodeDeployTrustRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Sid": "1",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": [
-                  "codedeploy.us-west-2.amazonaws.com"
-                ]
-              },
-              "Action": "sts:AssumeRole"
-            }
-          ]
-        },
-        "Path": "/"
-      }
-    },
-    "CodeDeployRolePolicies": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "CodeDeployPolicy",
-        "PolicyDocument": {
-          "Statement": [{
-            "Effect": "Allow",
-            "Resource": [
-              "*"
-            ],
-            "Action": [
-              "ec2:Describe*"
-            ]
-          }, {
-            "Effect": "Allow",
-            "Resource": [
-              "*"
-            ],
-            "Action": [
-              "autoscaling:CompleteLifecycleAction",
-              "autoscaling:DeleteLifecycleHook",
-              "autoscaling:DescribeLifecycleHooks",
-              "autoscaling:DescribeAutoScalingGroups",
-              "autoscaling:PutLifecycleHook",
-              "autoscaling:RecordLifecycleActionHeartbeat"
-            ]
-          }, {
-            "Effect": "Allow",
-            "Resource": [
-              "*"
-            ],
-            "Action": [
-              "Tag:getResources",
-              "Tag:getTags",
-              "Tag:getTagsForResource",
-              "Tag:getTagsForResourceList"
-            ]
-          }]
-        },
-        "Roles": [{
-          "Ref": "CodeDeployTrustRole"
-        }]
-      }
-    },
-    "InstanceRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [{
-            "Effect": "Allow",
-            "Principal": {
-              "Service": [
-                "ec2.amazonaws.com"
-              ]
-            },
-            "Action": [
-              "sts:AssumeRole"
-            ]
-          }]
-        },
-        "Path": "/"
-      }
-    },
-    "InstanceRolePolicies": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "InstanceRole",
-        "PolicyDocument": {
-          "Statement": [{
-            "Effect": "Allow",
-            "Action": [
-              "autoscaling:Describe*",
-              "cloudformation:Describe*",
-              "cloudformation:GetTemplate",
-              "s3:Get*",
-              "s3:List*"
-            ],
-            "Resource": "*"
-          }]
-        },
-        "Roles": [{
-          "Ref": "InstanceRole"
-        }]
-      }
-    },
-    "InstanceRoleInstanceProfile": {
-      "Type": "AWS::IAM::InstanceProfile",
-      "Properties": {
-        "Path": "/",
-        "Roles": [{
-          "Ref": "InstanceRole"
-        }]
-      }
-    },
-    "LinuxEC2Instance2": {
-      "Type": "AWS::EC2::Instance",
-      "Condition": "LaunchLinuxEC2Instance2",
-      "Metadata": {
-        "AWS::CloudFormation::Init": {
-          "services": {
-            "sysvint": {
-              "codedeploy-agent": {
-                "enabled": "true",
-                "ensureRunning": "true"
-              }
-            }
-          }
-        }
-      },
-      "Properties": {
-        "ImageId": {
-          "Fn::FindInMap": [
-            "RegionOS2AMI", {
-              "Ref": "AWS::Region"
-            }, {
-              "Ref": "OperatingSystem"
-            }
-          ]
-        },
-        "InstanceType": {
-          "Ref": "InstanceType"
-        },
-        "SecurityGroups": [{
-          "Ref": "SecurityGroup"
-        }],
-        "UserData": {
-          "Fn::Base64": {
-            "Fn::Join": [
-              "", [
-                "#!/bin/bash\n",
-                "cd /home/ubuntu/\n",
-                "echo \"'", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "'\" > init.config\n",
-                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "chmod +x ./ibeis-ia-cloudformation.sh\n",
-                "sudo ./ibeis-ia-cloudformation.sh '", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "' > init.log\n"
-              ]
-            ]
-          }
-        },
-        "KeyName": {
-          "Ref": "KeyPairName"
-        },
-        "Tags": [{
-          "Key": {
-            "Ref": "TagKey"
-          },
-          "Value": {
-            "Ref": "TagValue"
-          }
-        }],
-        "IamInstanceProfile": {
-          "Ref": "InstanceRoleInstanceProfile"
-        }
-      }
-    },
-    "LinuxEC2Instance3": {
-      "Type": "AWS::EC2::Instance",
-      "Condition": "LaunchLinuxEC2Instance3",
-      "Metadata": {
-        "AWS::CloudFormation::Init": {
-          "services": {
-            "sysvint": {
-              "codedeploy-agent": {
-                "enabled": "true",
-                "ensureRunning": "true"
-              }
-            }
-          }
-        }
-      },
-      "Properties": {
-        "ImageId": {
-          "Fn::FindInMap": [
-            "RegionOS2AMI", {
-              "Ref": "AWS::Region"
-            }, {
-              "Ref": "OperatingSystem"
-            }
-          ]
-        },
-        "InstanceType": {
-          "Ref": "InstanceType"
-        },
-        "SecurityGroups": [{
-          "Ref": "SecurityGroup"
-        }],
-        "UserData": {
-          "Fn::Base64": {
-            "Fn::Join": [
-              "", [
-                "#!/bin/bash\n",
-                "cd /home/ubuntu/\n",
-                "echo \"'", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "'\" > init.config\n",
-                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "chmod +x ./ibeis-ia-cloudformation.sh\n",
-                "sudo ./ibeis-ia-cloudformation.sh '", { "Ref": "WaitHandle" }, "' '", { "Ref": "AWS::StackId" }, "' '", { "Ref": "AWS::Region" }, "' > init.log\n"
-              ]
-            ]
-          }
-        },
-        "KeyName": {
-          "Ref": "KeyPairName"
-        },
-        "Tags": [{
-          "Key": {
-            "Ref": "TagKey"
-          },
-          "Value": {
-            "Ref": "TagValue"
-          }
-        }],
-        "IamInstanceProfile": {
-          "Ref": "InstanceRoleInstanceProfile"
-        }
       }
     }
   },
@@ -479,6 +2458,2038 @@
           "Arn"
         ]
       }
+    }
+  },
+  "Parameters": {
+    "InstanceCount": {
+      "AllowedValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "ConstraintDescription": "Must be a number between 1 and 20.",
+      "Default": "1",
+      "Description": "Number of Amazon EC2 instances.",
+      "Type": "Number"
+    },
+    "InstanceType": {
+      "AllowedValues": [
+        "t1.micro",
+        "m3.medium",
+        "m3.large",
+        "m3.xlarge",
+        "c3.large",
+        "c3.xlarge"
+      ],
+      "ConstraintDescription": "Must be a valid Amazon EC2 instance type.",
+      "Default": "c3.large",
+      "Description": "Amazon EC2 instance type.",
+      "Type": "String"
+    },
+    "KeyPairName": {
+      "Default": "shared-ibeis-team-key",
+      "Description": "Name of an existing Amazon EC2 key pair to enable SSH or RDP access to the instances.",
+      "Type": "AWS::EC2::KeyPair::KeyName"
+    },
+    "StackName": {
+      "Default": "IBEIS-IA-CodeDeploy",
+      "Type": "String"
+    },
+    "TagKey": {
+      "AllowedPattern": "[\\x20-\\x7E]*",
+      "ConstraintDescription": "Can contain only ASCII characters.",
+      "Default": "Name",
+      "Description": "The tag key that identifies this as a target for deployments.",
+      "Type": "String"
+    },
+    "TagValue": {
+      "AllowedPattern": "[\\x20-\\x7E]*",
+      "ConstraintDescription": "Can contain only ASCII characters.",
+      "Default": "IBEIS-IA-CodeDeploy",
+      "Description": "The tag value that identifies this as a target for deployments.",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "CodeDeployRolePolicies": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ec2:Describe*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "*"
+              ]
+            },
+            {
+              "Action": [
+                "autoscaling:CompleteLifecycleAction",
+                "autoscaling:DeleteLifecycleHook",
+                "autoscaling:DescribeLifecycleHooks",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:PutLifecycleHook",
+                "autoscaling:RecordLifecycleActionHeartbeat"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "*"
+              ]
+            },
+            {
+              "Action": [
+                "Tag:getResources",
+                "Tag:getTags",
+                "Tag:getTagsForResource",
+                "Tag:getTagsForResourceList"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                "*"
+              ]
+            }
+          ]
+        },
+        "PolicyName": "CodeDeployPolicy",
+        "Roles": [
+          {
+            "Ref": "CodeDeployTrustRole"
+          }
+        ]
+      },
+      "Type": "AWS::IAM::Policy"
+    },
+    "CodeDeployTrustRole": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "codedeploy.us-west-2.amazonaws.com"
+                ]
+              },
+              "Sid": "1"
+            }
+          ]
+        },
+        "Path": "/"
+      },
+      "Type": "AWS::IAM::Role"
+    },
+    "EC2Instance1": {
+      "Condition": "LaunchEC2Instance1",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance10": {
+      "Condition": "LaunchEC2Instance10",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance11": {
+      "Condition": "LaunchEC2Instance11",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance12": {
+      "Condition": "LaunchEC2Instance12",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance13": {
+      "Condition": "LaunchEC2Instance13",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance14": {
+      "Condition": "LaunchEC2Instance14",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance15": {
+      "Condition": "LaunchEC2Instance15",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance16": {
+      "Condition": "LaunchEC2Instance16",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance17": {
+      "Condition": "LaunchEC2Instance17",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance18": {
+      "Condition": "LaunchEC2Instance18",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance19": {
+      "Condition": "LaunchEC2Instance19",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance2": {
+      "Condition": "LaunchEC2Instance2",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance20": {
+      "Condition": "LaunchEC2Instance20",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance3": {
+      "Condition": "LaunchEC2Instance3",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance4": {
+      "Condition": "LaunchEC2Instance4",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance5": {
+      "Condition": "LaunchEC2Instance5",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance6": {
+      "Condition": "LaunchEC2Instance6",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance7": {
+      "Condition": "LaunchEC2Instance7",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance8": {
+      "Condition": "LaunchEC2Instance8",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "EC2Instance9": {
+      "Condition": "LaunchEC2Instance9",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "services": {
+            "sysvint": {
+              "codedeploy-agent": {
+                "enabled": "true",
+                "ensureRunning": "true"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "IamInstanceProfile": {
+          "Ref": "InstanceRoleInstanceProfile"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionOS2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            "Linux"
+          ]
+        },
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "KeyName": {
+          "Ref": "KeyPairName"
+        },
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": {
+              "Ref": "TagKey"
+            },
+            "Value": {
+              "Ref": "TagValue"
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash\n",
+                "cd /home/ubuntu/\n",
+                "echo \"'",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "'\" > init.config\n",
+                "curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "sudo ./ibeis-ia-cloudformation.sh '",
+                {
+                  "Ref": "WaitHandle"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::StackId"
+                },
+                "' '",
+                {
+                  "Ref": "AWS::Region"
+                },
+                "' > init.log\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Type": "AWS::EC2::Instance"
+    },
+    "InstanceRole": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sts:AssumeRole"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              }
+            }
+          ]
+        },
+        "Path": "/"
+      },
+      "Type": "AWS::IAM::Role"
+    },
+    "InstanceRoleInstanceProfile": {
+      "Properties": {
+        "Path": "/",
+        "Roles": [
+          {
+            "Ref": "InstanceRole"
+          }
+        ]
+      },
+      "Type": "AWS::IAM::InstanceProfile"
+    },
+    "InstanceRolePolicies": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "autoscaling:Describe*",
+                "cloudformation:Describe*",
+                "cloudformation:GetTemplate",
+                "s3:Get*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": "InstanceRole",
+        "Roles": [
+          {
+            "Ref": "InstanceRole"
+          }
+        ]
+      },
+      "Type": "AWS::IAM::Policy"
+    },
+    "SecurityGroup": {
+      "Properties": {
+        "GroupDescription": "Enable HTTP access via port 5000 and SSH access.",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "22",
+            "IpProtocol": "tcp",
+            "ToPort": "22"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "5000",
+            "IpProtocol": "tcp",
+            "ToPort": "5000"
+          }
+        ]
+      },
+      "Type": "AWS::EC2::SecurityGroup"
+    },
+    "WaitCondition": {
+      "Properties": {
+        "Count": {
+          "Ref": "InstanceCount"
+        },
+        "Handle": {
+          "Ref": "WaitHandle"
+        },
+        "Timeout": "900"
+      },
+      "Type": "AWS::CloudFormation::WaitCondition"
+    },
+    "WaitHandle": {
+      "Type": "AWS::CloudFormation::WaitConditionHandle"
     }
   }
 }

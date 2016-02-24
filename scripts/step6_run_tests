@@ -19,5 +19,6 @@ sudo rm -rf failed_doctests.txt
 ./run_tests.py
 # Test takes a long time, which can time-out AWS CodeDeploy service
 # Delete the lock to get things going again
-sudo rm -rf /opt/codedeploy-agent/state/.pid/codedeploy-agent.pid.lock
+sudo rm -rf /opt/codedeploy-agent/state/.pid
+sudo service codedeploy-agent restart
 
