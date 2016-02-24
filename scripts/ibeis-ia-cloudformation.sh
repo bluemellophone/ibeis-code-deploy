@@ -37,7 +37,7 @@ cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed 
 # All is well, so signal success to the stack.
 cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
 cd ..
-sudo rm -rf init.config init.log
-sudo rm -rf aws-cd-install-latest
-sudo rm -rf aws-cfn-bootstrap-latest
-sudo rm -rf ibeis-ia-cloudformation.sh
+# sudo rm -rf init.config init.log
+# sudo rm -rf aws-cd-install-latest
+# sudo rm -rf aws-cfn-bootstrap-latest
+# sudo rm -rf ibeis-ia-cloudformation.sh
