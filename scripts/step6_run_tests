@@ -9,7 +9,6 @@ if [ ! -d ibeis ]; then
     sudo chown ubuntu ibeis
 fi
 cd /opt/ibeis/ibeis
-./super_setup.py --pull
 sudo rm -rf ~/.theano
 if [ ! -e /dev/raw1394 ]; then
     sudo ln /dev/null /dev/raw1394
