@@ -17,10 +17,10 @@ export WAITHANDLE=$1 # { 'Ref': 'WaitHandle' }
 export STACKID=$2 # { 'Ref': 'AWS::StackId' }
 export REGION=$3 # { 'Ref': 'AWS::Region' }
 # Update apt-get.
-apt-get -y update || error_exit 'Failed apt-get update.'
-apt-get -y install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
-apt-get -y install python-pip || error_exit 'Failed apt-get install python-pip'
-apt-get -y install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
+sudo aptdcon --refresh || error_exit 'Failed apt-get update.'
+yes | sudo aptdcon --install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
+yes | sudo aptdcon --install python-pip || error_exit 'Failed apt-get install python-pip'
+yes | sudo aptdcon --install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
 pip install -U awscli || error_exit 'Failed pip install awscli.'
 # Install the AWS CloudFormation Agent.
 mkdir aws-cfn-bootstrap-latest
@@ -30,11 +30,14 @@ easy_install aws-cfn-bootstrap-latest || error_exit 'Failed to install AWS Cloud
 mkdir aws-cd-install-latest
 cd aws-cd-install-latest
 aws s3 cp --region $REGION s3://aws-codedeploy-$REGION/latest/install . || error_exit 'Failed to download AWS CodeDeploy Agent.'
-chmod +x ./install
-./install auto || error_exit 'Failed to install AWS CodeDeploy Agent.'
+sudo chmod +x ./install
+sudo ./install auto || error_exit 'Failed to install AWS CodeDeploy Agent.'
 # Start the stack initialization
 cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed to run cfn-init.'
 # All is well, so signal success to the stack.
 cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
 cd ..
-rm -rf init.config init.log
+sudo rm -rf init.config init.log
+sudo rm -rf aws-cd-install-latest
+sudo rm -rf aws-cfn-bootstrap-latest
+sudo rm -rf ibeis-ia-cloudformation.sh
