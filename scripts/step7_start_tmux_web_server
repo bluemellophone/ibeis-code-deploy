@@ -1,6 +1,6 @@
 #!/bin/bash -ex
-# sudo apt-get install tmux
-yes | sudo aptdcon --install tmux
+sudo apt-get install tmux
+# yes | sudo aptdcon --install tmux
 tmux new-session -d -s ibeis-ia-codedeploy-web-server
 tmux send-keys 'cd /opt/ibeis/ibeis
 ./main.py --dbdir /data/ibeis/testdb1/ --web --port 5000

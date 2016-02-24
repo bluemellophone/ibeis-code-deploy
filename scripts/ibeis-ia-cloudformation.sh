@@ -17,13 +17,17 @@ export WAITHANDLE=$1 # { 'Ref': 'WaitHandle' }
 export STACKID=$2 # { 'Ref': 'AWS::StackId' }
 export REGION=$3 # { 'Ref': 'AWS::Region' }
 # Update apt-get
-sudo apt-get update
-sudo apt-get install -y aptdaemon
-# Install apt-get dependencies using aptdcon
-sudo aptdcon --refresh || error_exit 'Failed apt-get update.'
-yes | sudo aptdcon --install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
-yes | sudo aptdcon --install python-pip || error_exit 'Failed apt-get install python-pip'
-yes | sudo aptdcon --install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
+sudo apt-get update || error_exit 'Failed apt-get update.'
+# Install dependencies using apt-get
+sudo apt-get -y install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
+sudo apt-get -y install python-pip || error_exit 'Failed apt-get install python-pip'
+sudo apt-get -y install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
+# Install dependencies using aptdcon
+# sudo apt-get install -y aptdaemon || error_exit 'Failed apt-get install aptdcon.'
+# sudo aptdcon --refresh || error_exit 'Failed aptdcon update.'
+# yes | sudo aptdcon --install ruby2.0 || error_exit 'Failed aptdcon install ruby2.0.'
+# yes | sudo aptdcon --install python-pip || error_exit 'Failed aptdcon install python-pip'
+# yes | sudo aptdcon --install python-setuptools || error_exit 'Failed aptdcon install python-setuptools.'
 sudo pip install -U awscli || error_exit 'Failed pip install awscli.'
 # Install the AWS CloudFormation Agent.
 mkdir aws-cfn-bootstrap-latest

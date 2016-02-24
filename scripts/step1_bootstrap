@@ -5,21 +5,21 @@ if [ ! -d ibeis ]; then
     sudo chown ubuntu ibeis
 fi
 cd ibeis
-# sudo apt-get update
-# sudo apt-get -y install git
-# sudo apt-get -y install tmux
-# sudo apt-get -y install htop
-
+sudo apt-get update
+sudo apt-get -y install git
+sudo apt-get -y install tmux
+sudo apt-get -y install htop
 # sudo apt-get install -y aptdaemon
-sudo aptdcon --refresh
-yes | sudo aptdcon --install git
-yes | sudo aptdcon --install tmux
-yes | sudo aptdcon --install htop
+# sudo aptdcon --refresh
+# yes | sudo aptdcon --install git
+# yes | sudo aptdcon --install tmux
+# yes | sudo aptdcon --install htop
 if [ ! -d ibeis ]; then
     git clone https://github.com/Erotemic/ibeis.git
 fi
 cd ibeis
 git checkout next
 git pull
-./super_setup.py --bootstrap --aptdcon
+# ./super_setup.py --bootstrap --aptdcon
+./super_setup.py --bootstrap
 
