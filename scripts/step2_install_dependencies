@@ -11,6 +11,8 @@ if [ ! -f /var/swap.1 ]; then
 fi
 # Install major prerequisites
 ./_scripts/__install_prereqs__.sh
+# Problem with apt-get being used...?
+sleep 10
 sudo apt-get -y install libopencv-dev python-opencv
 # Fix problem with GraphViz
 /usr/bin/yes | sudo pip uninstall pygraphviz
