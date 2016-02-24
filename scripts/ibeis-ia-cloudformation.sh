@@ -19,11 +19,12 @@ export REGION=$3 # { 'Ref': 'AWS::Region' }
 # Update apt-get
 sudo apt-get update
 sudo apt-get install -y aptdaemon
+# Install apt-get dependencies using aptdcon
 sudo aptdcon --refresh || error_exit 'Failed apt-get update.'
 yes | sudo aptdcon --install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
 yes | sudo aptdcon --install python-pip || error_exit 'Failed apt-get install python-pip'
 yes | sudo aptdcon --install python-setuptools || error_exit 'Failed apt-get install python-setuptools.'
-pip install -U awscli || error_exit 'Failed pip install awscli.'
+sudo pip install -U awscli || error_exit 'Failed pip install awscli.'
 # Install the AWS CloudFormation Agent.
 mkdir aws-cfn-bootstrap-latest
 curl https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz | tar xz -C aws-cfn-bootstrap-latest --strip-components 1 || error_exit 'Failed to download AWS CloudFormation Agent.'
