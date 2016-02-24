@@ -7,10 +7,6 @@ template_structure = '''
     "Description": "Create instances ready for IBEIS IA CodeDeploy.",
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {{
-        "StackName": {{
-            "Type": "String",
-            "Default": "IBEIS-IA-CodeDeploy"
-        }},
         "TagKey": {{
             "Description": "The tag key that identifies this as a target for deployments.",
             "Type": "String",

@@ -2508,10 +2508,6 @@
       "Description": "Name of an existing Amazon EC2 key pair to enable SSH or RDP access to the instances.",
       "Type": "AWS::EC2::KeyPair::KeyName"
     },
-    "StackName": {
-      "Default": "IBEIS-IA-CodeDeploy",
-      "Type": "String"
-    },
     "TagKey": {
       "AllowedPattern": "[\\x20-\\x7E]*",
       "ConstraintDescription": "Can contain only ASCII characters.",
