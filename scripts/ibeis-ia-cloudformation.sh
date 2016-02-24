@@ -16,7 +16,8 @@ fi
 export WAITHANDLE=$1 # { 'Ref': 'WaitHandle' }
 export STACKID=$2 # { 'Ref': 'AWS::StackId' }
 export REGION=$3 # { 'Ref': 'AWS::Region' }
-# Update apt-get.
+# Update apt-get
+sudo apt-get install -y aptdaemon
 sudo aptdcon --refresh || error_exit 'Failed apt-get update.'
 yes | sudo aptdcon --install ruby2.0 || error_exit 'Failed apt-get install ruby2.0.'
 yes | sudo aptdcon --install python-pip || error_exit 'Failed apt-get install python-pip'
