@@ -8,14 +8,15 @@ function error_exit
     exit 1
 }
 # Check parameters
-if [ $# -ne 3 ]; then
-    echo "usage: $0 { 'Ref': 'WaitHandle' } { 'Ref': 'AWS::StackId' } { 'Ref': 'AWS::Region' }"
+if [ $# -ne 4 ]; then
+    echo "usage: $0 { 'Ref': 'WaitHandle' } { 'Ref': 'AWS::Region' } { 'Ref': 'AWS::StackId' } LogicalResourceID"
     error_exit 'Invalid parameters.'
 fi
 # Get Parameters, including WAITHANDLE redefine
 export WAITHANDLE=$1 # { 'Ref': 'WaitHandle' }
-export STACKID=$2 # { 'Ref': 'AWS::StackId' }
-export REGION=$3 # { 'Ref': 'AWS::Region' }
+export REGION=$2 # { 'Ref': 'AWS::Region' }
+export STACKID=$3 # { 'Ref': 'AWS::StackId' }
+export RESOURCEID=$4 # LogicalResourceID
 # Update apt-get
 sudo apt-get update || error_exit 'Failed apt-get update.'
 # Install dependencies using apt-get
@@ -46,7 +47,7 @@ sudo aws s3 cp --region $REGION s3://aws-codedeploy-$REGION/latest/install . || 
 sudo chmod +x ./install
 sudo ./install auto || error_exit 'Failed to install AWS CodeDeploy Agent.'
 # Start the stack initialization
-sudo cfn-init -s $STACKID -r LinuxEC2Instance --region $REGION || error_exit 'Failed to run cfn-init.'
+sudo cfn-init --region $REGION -s $STACKID -r $RESOURCEID || error_exit 'Failed to run cfn-init.'
 # All is well, so signal success to the stack.
 sudo cfn-signal -e 0 -r 'AWS CloudFormation and CodeDeploy Agents setup complete.' $WAITHANDLE
 cd ..

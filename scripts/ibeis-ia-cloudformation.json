@@ -2655,28 +2655,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance1'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance1' > init.log\n"
               ]
             ]
           }
@@ -2745,28 +2744,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance10'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance10' > init.log\n"
               ]
             ]
           }
@@ -2835,28 +2833,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance11'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance11' > init.log\n"
               ]
             ]
           }
@@ -2925,28 +2922,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance12'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance12' > init.log\n"
               ]
             ]
           }
@@ -3015,28 +3011,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance13'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance13' > init.log\n"
               ]
             ]
           }
@@ -3105,28 +3100,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance14'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance14' > init.log\n"
               ]
             ]
           }
@@ -3195,28 +3189,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance15'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance15' > init.log\n"
               ]
             ]
           }
@@ -3285,28 +3278,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance16'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance16' > init.log\n"
               ]
             ]
           }
@@ -3375,28 +3367,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance17'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance17' > init.log\n"
               ]
             ]
           }
@@ -3465,28 +3456,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance18'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance18' > init.log\n"
               ]
             ]
           }
@@ -3555,28 +3545,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance19'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance19' > init.log\n"
               ]
             ]
           }
@@ -3645,28 +3634,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance2'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance2' > init.log\n"
               ]
             ]
           }
@@ -3735,28 +3723,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance20'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance20' > init.log\n"
               ]
             ]
           }
@@ -3825,28 +3812,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance3'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance3' > init.log\n"
               ]
             ]
           }
@@ -3915,28 +3901,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance4'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance4' > init.log\n"
               ]
             ]
           }
@@ -4005,28 +3990,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance5'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance5' > init.log\n"
               ]
             ]
           }
@@ -4095,28 +4079,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance6'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance6' > init.log\n"
               ]
             ]
           }
@@ -4185,28 +4168,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance7'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance7' > init.log\n"
               ]
             ]
           }
@@ -4275,28 +4257,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance8'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance8' > init.log\n"
               ]
             ]
           }
@@ -4365,28 +4346,27 @@
                 },
                 "' '",
                 {
-                  "Ref": "AWS::StackId"
+                  "Ref": "AWS::Region"
                 },
                 "' '",
                 {
-                  "Ref": "AWS::Region"
+                  "Ref": "AWS::StackId"
                 },
-                "'\" > init.config\n",
+                "' 'EC2Instance9'\" > init.config\n",
                 "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\n",
-                "sudo chmod +x ./ibeis-ia-cloudformation.sh\n",
+                "chmod +x ./ibeis-ia-cloudformation.sh\n",
                 "sudo ./ibeis-ia-cloudformation.sh '",
                 {
                   "Ref": "WaitHandle"
                 },
+                {
+                  "Ref": "AWS::Region"
+                },
                 "' '",
                 {
                   "Ref": "AWS::StackId"
                 },
-                "' '",
-                {
-                  "Ref": "AWS::Region"
-                },
-                "' > init.log\n"
+                "' 'EC2Instance9' > init.log\n"
               ]
             ]
           }
