@@ -135,7 +135,16 @@ template_structure = '''
                             "Effect": "Allow",
                             "Principal": {{
                                 "Service": [
-                                    "codedeploy.us-west-2.amazonaws.com"
+                                    "codedeploy.us-east-1.amazonaws.com",
+                                    "codedeploy.us-west-1.amazonaws.com",
+                                    "codedeploy.us-west-2.amazonaws.com",
+                                    "codedeploy.eu-west-1.amazonaws.com",
+                                    "codedeploy.eu-central-1.amazonaws.com",
+                                    "codedeploy.ap-northeast-1.amazonaws.com",
+                                    "codedeploy.ap-northeast-2.amazonaws.com",
+                                    "codedeploy.ap-southeast-1.amazonaws.com",
+                                    "codedeploy.ap-southeast-2.amazonaws.com",
+                                    "codedeploy.sa-east-1.amazonaws.com"
                                 ]
                             }},
                             "Action": "sts:AssumeRole"
