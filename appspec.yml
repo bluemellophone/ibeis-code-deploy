@@ -3,19 +3,19 @@ os: linux
 hooks:
   BeforeInstall:
     - location: scripts/step1_bootstrap
-      timeout: 120
+      timeout: 300
       runas: ubuntu
     - location: scripts/step2_install_dependencies
       timeout: 7200
       runas: ubuntu
     - location: scripts/step3_clone_repositories
-      timeout: 120
+      timeout: 300
       runas: ubuntu
     - location: scripts/step4_build_repositories
       timeout: 300
       runas: ubuntu
     - location: scripts/step5_develop_repositories
-      timeout: 120
+      timeout: 300
       runas: ubuntu
   AfterInstall:
     - location: scripts/step6_run_tests

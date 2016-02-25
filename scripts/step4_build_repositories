@@ -9,4 +9,7 @@ cd ibeis-flukematch-module
 ./unix_build.sh
 cd ../
 cd ibeis
+# CodeDeploy is half-baked
+sudo rm -rf /opt/codedeploy-agent/state/.pid
+sudo service codedeploy-agent restart
 

@@ -1,4 +1,7 @@
 #!/bin/bash -ex
 cd /opt/ibeis/ibeis
 ./super_setup.py --develop
+# CodeDeploy is half-baked
+sudo rm -rf /opt/codedeploy-agent/state/.pid
+sudo service codedeploy-agent restart
 
