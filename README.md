@@ -1,2 +1,2 @@
 # ibeis_aws_codedeploy
-Amazon AWS CodeDeploy files for IBEIS
+Amazon AWS CloudFormation and CodeDeploy files for IBEIS
