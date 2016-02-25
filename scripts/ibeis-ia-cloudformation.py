@@ -70,17 +70,11 @@ template_structure = '''
             "ap-northeast-1": {{
                 "Linux": "ami-d91428b7"
             }},
-            "ap-northeast-2": {{
-                "Linux": ""
-            }},
             "ap-southeast-1": {{
                 "Linux": "ami-a2c10dc1"
             }},
             "ap-southeast-2": {{
                 "Linux": "ami-530b2e30"
-            }},
-            "sa-east-1": {{
-                "Linux": "ami-feb73692"
             }}
         }}
     }},
@@ -141,10 +135,8 @@ template_structure = '''
                                     "codedeploy.eu-west-1.amazonaws.com",
                                     "codedeploy.eu-central-1.amazonaws.com",
                                     "codedeploy.ap-northeast-1.amazonaws.com",
-                                    "codedeploy.ap-northeast-2.amazonaws.com",
                                     "codedeploy.ap-southeast-1.amazonaws.com",
-                                    "codedeploy.ap-southeast-2.amazonaws.com",
-                                    "codedeploy.sa-east-1.amazonaws.com"
+                                    "codedeploy.ap-southeast-2.amazonaws.com"
                                 ]
                             }},
                             "Action": "sts:AssumeRole"
