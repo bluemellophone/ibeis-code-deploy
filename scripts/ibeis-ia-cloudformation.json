@@ -2445,6 +2445,33 @@
   "Description": "Create instances ready for IBEIS IA CodeDeploy.",
   "Mappings": {
     "RegionOS2AMI": {
+      "ap-northeast-1": {
+        "Linux": "ami-d91428b7"
+      },
+      "ap-northeast-2": {
+        "Linux": ""
+      },
+      "ap-southeast-1": {
+        "Linux": "ami-a2c10dc1"
+      },
+      "ap-southeast-2": {
+        "Linux": "ami-530b2e30"
+      },
+      "eu-central-1": {
+        "Linux": "ami-d0574ebc"
+      },
+      "eu-west-1": {
+        "Linux": "ami-be5cf7cd"
+      },
+      "sa-east-1": {
+        "Linux": "ami-feb73692"
+      },
+      "us-east-1": {
+        "Linux": "ami-b2e3c6d8"
+      },
+      "us-west-1": {
+        "Linux": "ami-42116522"
+      },
       "us-west-2": {
         "Linux": "ami-9dbea4fc"
       }

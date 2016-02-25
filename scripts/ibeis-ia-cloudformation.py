@@ -52,8 +52,35 @@ template_structure = '''
     }},
     "Mappings": {{
         "RegionOS2AMI": {{
-            "{region}": {{
-                "{os}": "{ami}"
+            "us-east-1": {{
+                "Linux": "ami-b2e3c6d8"
+            }},
+            "us-west-1": {{
+                "Linux": "ami-42116522"
+            }},
+            "us-west-2": {{
+                "Linux": "ami-9dbea4fc"
+            }},
+            "eu-west-1": {{
+                "Linux": "ami-be5cf7cd"
+            }},
+            "eu-central-1": {{
+                "Linux": "ami-d0574ebc"
+            }},
+            "ap-northeast-1": {{
+                "Linux": "ami-d91428b7"
+            }},
+            "ap-northeast-2": {{
+                "Linux": ""
+            }},
+            "ap-southeast-1": {{
+                "Linux": "ami-a2c10dc1"
+            }},
+            "ap-southeast-2": {{
+                "Linux": "ami-530b2e30"
+            }},
+            "sa-east-1": {{
+                "Linux": "ami-feb73692"
             }}
         }}
     }},
@@ -249,7 +276,7 @@ template_instance = '''
                 "RegionOS2AMI", {{
                     "Ref": "AWS::Region"
                 }},
-                "{os}"
+                "Linux"
             ]
         }},
         "InstanceType": {{
@@ -336,9 +363,6 @@ if __name__ == '__main__':
             )
 
     config = {
-        'region' : 'us-west-2',
-        'ami'    : 'ami-9dbea4fc',
-        'os'     : 'Linux',
         'number' : 20,
     }
 
@@ -354,8 +378,7 @@ if __name__ == '__main__':
     template_instance_str = ','.join(
         [
             template_instance.format(
-                index=index + 1,
-                **config
+                index=index + 1
             )
             for index in range(config.get('number'))
         ]
