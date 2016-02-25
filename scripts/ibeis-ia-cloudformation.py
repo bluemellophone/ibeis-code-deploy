@@ -268,7 +268,7 @@ template_instance = '''
                         "echo \\"'", {{ "Ref": "WaitHandle" }}, "' '", {{ "Ref": "AWS::Region" }}, "' '", {{ "Ref": "AWS::StackId" }}, "' 'EC2Instance{index}'\\" > init.config\\n",
                         "sudo curl -O https://raw.githubusercontent.com/bluemellophone/ibeis_aws_codedeploy/master/scripts/ibeis-ia-cloudformation.sh\\n",
                         "chmod +x ./ibeis-ia-cloudformation.sh\\n",
-                        "sudo ./ibeis-ia-cloudformation.sh '", {{ "Ref": "WaitHandle" }}, {{ "Ref": "AWS::Region" }}, "' '", {{ "Ref": "AWS::StackId" }}, "' 'EC2Instance{index}' > init.log\\n"
+                        "sudo ./ibeis-ia-cloudformation.sh '", {{ "Ref": "WaitHandle" }}, "' '", {{ "Ref": "AWS::Region" }}, "' '", {{ "Ref": "AWS::StackId" }}, "' 'EC2Instance{index}' > init.log\\n"
                     ]
                 ]
             }}

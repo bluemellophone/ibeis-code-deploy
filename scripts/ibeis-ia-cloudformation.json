@@ -2668,6 +2668,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -2757,6 +2758,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -2846,6 +2848,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -2935,6 +2938,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3024,6 +3028,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3113,6 +3118,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3202,6 +3208,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3291,6 +3298,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3380,6 +3388,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3469,6 +3478,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3558,6 +3568,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3647,6 +3658,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3736,6 +3748,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3825,6 +3838,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -3914,6 +3928,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -4003,6 +4018,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -4092,6 +4108,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -4181,6 +4198,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -4270,6 +4288,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -4359,6 +4378,7 @@
                 {
                   "Ref": "WaitHandle"
                 },
+                "' '",
                 {
                   "Ref": "AWS::Region"
                 },
